@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Parse Meh!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+  <input type="file" name="files" id="csv-files">
+  <div id="container">
+    <p><xmp>
+    <tables>
+      <categories>
+        <row>
+          <id>134</id>
+          <order><![CDATA[119]]></order>
+          <title><![CDATA[Entertainment]]></title>
+          <alias><![CDATA[entertainment]]></alias>
+        </row>
+        <row>
+          <id>135</id>
+          <order><![CDATA[121]]></order>
+          <title><![CDATA[Automotive]]></title>
+          <alias><![CDATA[automotive]]></alias>
+        </row>
+        <row>
+          <id>136</id>
+          <order><![CDATA[123]]></order>
+          <title><![CDATA[Other]]></title>
+          <alias><![CDATA[other]]></alias>
+        </row>
+        <row>
+          <id>137</id>
+          <order><![CDATA[125]]></order>
+          <title><![CDATA[Food]]></title>
+          <alias><![CDATA[food]]></alias>
+        </row>
+      </categories>
+      <fields>
+        <row>
+          <id>1</id>
+          <type>input</type>
+          <type_value>string</type_value>
+          <group>items</group>
+          <category>1</category>
+          <name><![CDATA[Company Website]]></name>
+          <template>horizontal_float</template>
+        </row>
+        <row>
+          <id>2</id>
+          <type>select</type>
+          <type_value>int</type_value>
+          <group>item</group>
+          <category>1</category>
+          <name><![CDATA[Company Size]]></name>
+          <select><![CDATA[{"value":["Corporate","Big","Small"],"order":["1","2","3","4"]}]]></select>
+          <template>vertical</template>
+        </row>
+    </fields>
+    <content></xmp>
+    </p>
+    <!-- <pre> -->
+    <!-- <xmp> -->
+      <!-- </div> -->
+    <textarea id="stuff"></textarea>
+    <!-- <xmp id="stuff"></div> --> 
+    <!-- </xmp> -->
+    <xmp>
+    </content>
+  </tables>
+  <!-- </pre> -->
+  </xmp>
+  <div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="js/papaparse.min.js" type="text/javascript"></script>
+  <script src="js/vkbeautify.js" type="text/javascript"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+  <script type="text/javascript">
+  	var rests = {}
+    var stuff,
+    step1  = String.fromCharCode(13) + "<category>"
+    step2  = String.fromCharCode(13) + "</category>"
+    step3  = String.fromCharCode(13) + "<address>"
+    step4  = String.fromCharCode(13) + "</address>"
+    step5  = String.fromCharCode(13) + "<title>"
+    step6  = String.fromCharCode(13) + "</title>"
+    step7  = String.fromCharCode(13) + "<introtext>"
+    step8  = String.fromCharCode(13) + "</introtext>"
+    step9  = String.fromCharCode(13) + "<field>"
+    step10 = String.fromCharCode(13) + "<row>"
+    step11 = String.fromCharCode(13) + "</row>"
+    step12 = String.fromCharCode(13) + "<id>"
+    step13 = String.fromCharCode(13) + "</id>"
+    step14 = String.fromCharCode(13) + "</field>"
+    step15 = String.fromCharCode(13) + "<images>"
+    step16 = String.fromCharCode(13) + "</images>"
+    step17 = String.fromCharCode(13) + "<group>"
+    step18 = String.fromCharCode(13) + "</group>"
+    step19 = String.fromCharCode(13) + "<download>"
+    step20 = String.fromCharCode(13) + "</download>"
+    step21 = String.fromCharCode(13) + "<value>"
+    step22 = String.fromCharCode(13) + "</value>"
+    step23 = String.fromCharCode(13) + "<file>"
+    step24 = String.fromCharCode(13) + "</file>"
+
+    var div = $('#stuff')
+    div.val(' ')
+    var data, file, getFiles = function(event) {
+  	  // console.log(event)
+  	  var file = event.target.files[0]
+      return file
+  	}
+
+  	var parse = function parse(file){
+  	  Papa.parse(file, {
+        worker: true,
+  	  	header: true,
+  	  	dynamicTyping: true,
+        step: function(row) {
+          stuff = step10
+          stuff += step1
+          stuff += 85
+          stuff += step2
+          stuff += step3
+          stuff += 0
+          stuff += step4
+          stuff += step5
+          stuff += row.data[0].Name
+          stuff += step6
+          stuff += step7
+          stuff += row.data[0].Description
+          stuff += step8
+          stuff += step9
+          stuff += step10
+          stuff += step12
+          stuff += 1
+          stuff += step13
+          stuff += step21
+          stuff += row.data[0].Website
+          stuff += step22
+          stuff += step11
+          stuff += step14
+          stuff += "<maps_lat>" + row.data[0].Lat + "</maps_lat>"
+          stuff += "<maps_long>" + row.data[0].Long + "</maps_long>"
+          stuff += "<language><![CDATA[*]]></language>"
+          stuff += step11
+          console.log(vkbeautify.xml(stuff))
+          $('#stuff').val($('#stuff').val()+vkbeautify.xml(stuff))
+        },
+  	  	complete: function() {
+  	  		// data = res.data
+          // console.log(data)
+  	  		console.log("All done!")
+  	  	}
+  	  })
+  	}
+  	document.getElementById('csv-files').addEventListener("change", function (e) {
+  	  // console.log("event triggered!")
+  	  parse(getFiles(e))
+
+  	})
+  </script>
+</body>
+</html>
